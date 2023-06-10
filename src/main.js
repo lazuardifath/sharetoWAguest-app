@@ -12,7 +12,7 @@ import VueSimpleAlert from "vue-simple-alert";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faPencilAlt, faTrashAlt, faPhoneAlt } from '@fortawesome/free-solid-svg-icons'
+import { faPencilAlt, faTrashAlt, faPhoneAlt, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import Toasted from 'vue-toasted';
 Vue.use(Toasted, {
   duration: 1500,
@@ -22,7 +22,7 @@ Vue.use(Toasted, {
 })
 
 /* add icons to the library */
-library.add(faPencilAlt, faTrashAlt, faPhoneAlt)
+library.add(faPencilAlt, faTrashAlt, faPhoneAlt, faArrowRight)
 
 /* add font awesome icon component */
 Vue.component('font-awesome-icon', FontAwesomeIcon)

@@ -12,10 +12,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <router-link class="nav-link pr-3" to="/">Add User</router-link>
+          <router-link class="nav-link pr-3" to="/">Tambah Tamu</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/list">View Users</router-link>
+          <router-link class="nav-link" to="/list">Lihat Semua Tamu</router-link>
         </li>
       </ul>
     </div>

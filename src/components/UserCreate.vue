@@ -1,12 +1,10 @@
 <template>
 <div class="container-fluid">
     <div class="row justify-content-center m-3">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <router-link class="breadcrumb-item" to="/list">Home</router-link>
-                <li class="breadcrumb-item active" aria-current="page">Library</li>
-            </ol>
-        </nav>
+        <div class="alert alert-primary" role="alert">
+            Tambah data tamu anda untuk melakukan share pada list tamu.
+            <router-link class="alert-link" to="/list">Lihat Semua Tamu <font-awesome-icon icon="fa-solid fa-arrow-right" /></router-link>
+        </div>
     </div>
     <div class="row justify-content-center">
         <div class="col-md-5">
