@@ -16,7 +16,7 @@
                 </div>
                 <div class="mb-3 form-group">
                     <label class="mb-2">No. WA</label>
-                    <input type="text" id="phone-input" @paste.prevent="handlePaste" class="form-control" v-model="user.phone" required>
+                    <input type="text" id="phone-input" @input.prevent="handleInput" @paste.prevent="handlePaste" class="form-control" v-model="user.phone" required>
                 </div>
                 <div class="mb-3 form-group">
                     <button class="btn btn-primary btn-block">Tambah Tamu</button>
@@ -36,6 +36,10 @@
             }
         },
         methods: {
+            handleInput(event) {
+                event.preventDefault();
+                this.user.phone = this.user.phone.replace(/\D/g, '');
+            },
             handlePaste(event) {
                 event.preventDefault();
                 const clipboardData = event.clipboardData || window.clipboardData;
