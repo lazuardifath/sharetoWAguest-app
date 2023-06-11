@@ -16,7 +16,7 @@ import { faPencilAlt, faTrashAlt, faPhoneAlt, faArrowRight } from '@fortawesome/
 import Toasted from 'vue-toasted';
 Vue.use(Toasted, {
   duration: 1500,
-  position: 'bottom', // ['top-right', 'top-center', 'top-left', 'bottom-right', 'bottom-center', 'bottom-left']
+  position: 'bottom-center', // ['top-right', 'top-center', 'top-left', 'bottom-right', 'bottom-center', 'bottom-left']
   theme: 'outline', // ['toasted-primary', 'outline', 'bubble']
   iconPack: 'material' // ['material', 'fontawesome', 'mdi', 'custom-class', 'callback']
 })
