@@ -22,12 +22,13 @@
                         <tbody>
                             <tr v-for="user in Users" :key="user.key">
                                 <td style="font-size: 12px;vertical-align: middle;">{{ user.name }}</td>
-                                <td style="font-size: 12px;vertical-align: middle;">{{ user.phone }}</td>
+                                <td style="font-size: 8px;vertical-align: middle;">{{ user.phone }}</td>
                                 <td>
                                     <div class="btn-group btn-group-sm" style="scale:70%" role="group" aria-label="Small button group">
                                         <router-link :to="{name: 'edit', params: { id: user.key }}" class="btn btn-primary" style="margin: 2px 0px;"><font-awesome-icon icon="fa-solid fa-pencil-alt" /></router-link>
                                         <button @click.prevent="deleteUser(user.key)" class="btn btn-danger" style="margin:2px 0px"><font-awesome-icon icon="fa-solid fa-trash-alt" /></button>
                                         <button @click.prevent="sendLink(user.key)" class="btn btn-success" style="margin:2px 0px"><font-awesome-icon icon="fa-solid fa-phone-alt" /></button>
+                                        <button @click.prevent="sendIg(user.key)" class="btn btn-dark" style="margin:2px 0px"><font-awesome-icon icon="fa-brands fa-instagram" /></button>
                                     </div>
                                 </td>
                             </tr>
@@ -54,7 +55,8 @@
                     this.Users.push({
                         key: doc.id,
                         name: doc.data().name,
-                        phone: doc.data().phone
+                        phone: doc.data().phone,
+                        ig: doc.data().ig,
                     })
                 });
             })
@@ -85,6 +87,35 @@
                         this.encodedURL = this.url.replace(/ /g, '%2B');
                         this.phone = doc.data().phone.replace('08', '628');
                         window.location.href = 'https://api.whatsapp.com/send?phone='+ this.phone +'&text=*%D8%A7%D9%84%D8%B3%D9%91%D9%8E%D9%84%D8%A7%D9%8E%D9%85%D9%8F%20%D8%B9%D9%8E%D9%84%D9%8E%D9%8A%D9%92%D9%83%D9%8F%D9%85%D9%92%20%D9%88%D9%8E%D8%B1%D9%8E%D8%AD%D9%92%D9%85%D9%8E%D8%A9%D9%8F%20%D8%A7%D9%84%D9%84%D9%87%D9%90%20%D9%88%D9%8E%D8%A8%D9%8E%D8%B1%D9%8E%D9%83%D9%8E%D8%A7%D8%AA%D9%8F%D9%87%D9%8F*%0A%0AMaha%20suci%20Allah%20yang%20telah%20menciptakan%20makhluk-Nya%20berpasang-pasangan.%0A%0ASaudara%2Fi%2C%20*'+ this.name +'*%0A%0ADengan%20mengharap%20rahmat%20dan%20ridha-Nya%2C%20perkenankan%20kami%20menyampaikan%20kabar%20gembira%20atas%20pernikahan%20kami%3A%20%0A%0A*Lazuardi%20Fatahilah%20Hamdi*%0A%26%0A*Emara%20Najla%20Medina*%0A%0AAkad%20nikah%20%26%20resepsi%20Insya%20Allah%20akan%20dilaksanakan%20pada%20%3A%0A%0A*Akad*%3A%0AHari%2FTanggal%20%3A%20Sabtu%2C%2001%20Juli%202023%0APukul%20%3A%2008.00%20s%2Fd%20Selesai%0ATempat%20%3A%20Jl.%20DR.%20Soetomo%20No.2%2C%20Prenam%2C%20Dukuhwringin%2C%20Kec.%20Slawi%2C%20Kabupaten%20Tegal%2C%20Jawa%20Tengah%0A%0A*Resepsi*%3A%0AHari%2FTanggal%20%3A%20Sabtu%2C%2001%20Juli%202023%0APukul%20%3A%2011.00%20s%2Fd%20Selesai%0ATempat%20%3A%20Jl.%20DR.%20Soetomo%20No.2%2C%20Prenam%2C%20Dukuhwringin%2C%20Kec.%20Slawi%2C%20Kabupaten%20Tegal%2C%20Jawa%20Tengah%0A%0ADengan%20ini%2C%20perkenankan%20kami%20mengundang%20saudara%2Fi%20*' + this.name +'*%20pada%20%3A%20%0A'+ this.encodedURL +'%0A%0ASuatu%20kebahagiaan%20%26%20kehormatan%20bagi%20kami%20sekiranya%20saudara%2Fi%20berkenan%20memberikan%20doa%20untuk%20kebaikan%20dan%20keberkahan%20pernikahan%20kami.%0A%0AAtas%20perhatian%20dan%20doa%20restu%20dari%20saudara%2Fi%20sekalian%2C%20kami%20ucapkan%20terimakasih.%0A%0A*%D9%88%D9%8E%20%D8%A7%D9%84%D8%B3%D9%8E%D9%91%D9%84%D8%A7%D9%8E%D9%85%D9%8F%20%D8%B9%D9%8E%D9%84%D9%8E%D9%8A%D9%92%D9%83%D9%8F%D9%85%D9%92%20%D9%88%D9%8E%D8%B1%D9%8E%D8%AD%D9%92%D9%85%D9%8E%D8%A9%D9%8F%20%D8%A7%D9%84%D9%84%D9%87%D9%90%20%D9%88%D9%8E%D8%A8%D9%8E%D8%B1%D9%8E%D9%83%D9%8E%D8%A7%D8%AA%D9%8F%D9%87%D9%8F*%0A%0AKami%20yang%20berbahagia%0A*Lazuardi%20%26%20Emara*';
+                    }
+                    })
+                    .catch((error) => {
+                        console.error('Error retrieving website URL:', error);
+                    });
+            },
+            sendIg(id) {
+                db.collection('users')
+                .doc(id) // Replace 'websiteId' with the specific document ID
+                .get()
+                .then((doc) => {
+                    if (doc.exists) {
+                        // Replace 'url' with the field containing the website URL in your Firestore document
+                        this.name = doc.data().name;
+                        this.url = 'https%3A%2F%2Flazuardiemara.vercel.app%2F%3Fto%3D'+ this.name;
+                        this.encodedURL = this.url.replace(/ /g, '%2B');
+                        this.phone = doc.data().phone.replace('08', '628');
+                        this.uri = '*%D8%A7%D9%84%D8%B3%D9%91%D9%8E%D9%84%D8%A7%D9%8E%D9%85%D9%8F%20%D8%B9%D9%8E%D9%84%D9%8E%D9%8A%D9%92%D9%83%D9%8F%D9%85%D9%92%20%D9%88%D9%8E%D8%B1%D9%8E%D8%AD%D9%92%D9%85%D9%8E%D8%A9%D9%8F%20%D8%A7%D9%84%D9%84%D9%87%D9%90%20%D9%88%D9%8E%D8%A8%D9%8E%D8%B1%D9%8E%D9%83%D9%8E%D8%A7%D8%AA%D9%8F%D9%87%D9%8F*%0A%0AMaha%20suci%20Allah%20yang%20telah%20menciptakan%20makhluk-Nya%20berpasang-pasangan.%0A%0ASaudara%2Fi%2C%20*'+ this.name +'*%0A%0ADengan%20mengharap%20rahmat%20dan%20ridha-Nya%2C%20perkenankan%20kami%20menyampaikan%20kabar%20gembira%20atas%20pernikahan%20kami%3A%20%0A%0A*Lazuardi%20Fatahilah%20Hamdi*%0A%26%0A*Emara%20Najla%20Medina*%0A%0AAkad%20nikah%20%26%20resepsi%20Insya%20Allah%20akan%20dilaksanakan%20pada%20%3A%0A%0A*Akad*%3A%0AHari%2FTanggal%20%3A%20Sabtu%2C%2001%20Juli%202023%0APukul%20%3A%2008.00%20s%2Fd%20Selesai%0ATempat%20%3A%20Jl.%20DR.%20Soetomo%20No.2%2C%20Prenam%2C%20Dukuhwringin%2C%20Kec.%20Slawi%2C%20Kabupaten%20Tegal%2C%20Jawa%20Tengah%0A%0A*Resepsi*%3A%0AHari%2FTanggal%20%3A%20Sabtu%2C%2001%20Juli%202023%0APukul%20%3A%2011.00%20s%2Fd%20Selesai%0ATempat%20%3A%20Jl.%20DR.%20Soetomo%20No.2%2C%20Prenam%2C%20Dukuhwringin%2C%20Kec.%20Slawi%2C%20Kabupaten%20Tegal%2C%20Jawa%20Tengah%0A%0ADengan%20ini%2C%20perkenankan%20kami%20mengundang%20saudara%2Fi%20*' + this.name +'*%20pada%20%3A%20%0A'+ this.encodedURL +'%0A%0ASuatu%20kebahagiaan%20%26%20kehormatan%20bagi%20kami%20sekiranya%20saudara%2Fi%20berkenan%20memberikan%20doa%20untuk%20kebaikan%20dan%20keberkahan%20pernikahan%20kami.%0A%0AAtas%20perhatian%20dan%20doa%20restu%20dari%20saudara%2Fi%20sekalian%2C%20kami%20ucapkan%20terimakasih.%0A%0A*%D9%88%D9%8E%20%D8%A7%D9%84%D8%B3%D9%8E%D9%91%D9%84%D8%A7%D9%8E%D9%85%D9%8F%20%D8%B9%D9%8E%D9%84%D9%8E%D9%8A%D9%92%D9%83%D9%8F%D9%85%D9%92%20%D9%88%D9%8E%D8%B1%D9%8E%D8%AD%D9%92%D9%85%D9%8E%D8%A9%D9%8F%20%D8%A7%D9%84%D9%84%D9%87%D9%90%20%D9%88%D9%8E%D8%A8%D9%8E%D8%B1%D9%8E%D9%83%D9%8E%D8%A7%D8%AA%D9%8F%D9%87%D9%8F*%0A%0AKami%20yang%20berbahagia%0A*Lazuardi%20%26%20Emara*';
+                        this.newuri = decodeURIComponent(this.uri);
+                        navigator.clipboard.writeText(this.newuri)
+                        .then(() => {
+                            console.log('Text copied to clipboard');
+                            this.$toasted.show("Text copied to clipboard")
+                            // Navigate to the Instagram direct message link
+                            window.location.href = 'https://www.instagram.com/direct/t/';
+                        })
+                        .catch((error) => {
+                            console.error('Error copying text to clipboard:', error);
+                        });
                     }
                     })
                     .catch((error) => {

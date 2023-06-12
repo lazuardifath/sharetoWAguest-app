@@ -3,16 +3,16 @@
         <div class="col-md-5">
             <h3 class="text-center">Update Tamu</h3>
             <form @submit.prevent="onUpdateForm">
-                <div class="form-group">
+                <div class="form-group" style="margin: 8px;">
                     <label>Nama</label>
-                    <input type="text" class="form-control" v-model="user.name" required>
+                    <input style="margin-top: 5px;" type="text" class="form-control" v-model="user.name" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="margin: 8px;">
                     <label>No. WA</label>
-                    <input type="text" class="form-control" v-model="user.phone" required>
+                    <input style="margin-top: 5px;" type="text" class="form-control" v-model="user.phone" required>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary btn-block">Add User</button>
+                    <button class="btn btn-primary btn-block" style="margin: 8px;">Add User</button>
                 </div>
             </form>
         </div>
