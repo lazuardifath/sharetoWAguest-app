@@ -19,6 +19,10 @@
                     <input type="text" id="phone-input" @paste.prevent="handlePaste" class="form-control" v-model="user.phone" required>
                 </div>
                 <div class="mb-3 form-group">
+                    <label class="mb-2">Username IG</label>
+                    <input type="text" class="form-control" v-model="user.ig" required>
+                </div>
+                <div class="mb-3 form-group">
                     <button class="btn btn-primary btn-block">Tambah Tamu</button>
                 </div>
             </form>
@@ -49,6 +53,7 @@
                     this.$toasted.show("Tamu Ditambahkan")
                     this.user.name = ''
                     this.user.phone = ''
+                    this.user.ig = ''
                 }).catch((error) => {
                     console.log(error);
                 });

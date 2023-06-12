@@ -11,6 +11,10 @@
                     <label>No. WA</label>
                     <input style="margin-top: 5px;" type="text" class="form-control" v-model="user.phone" required>
                 </div>
+                <div class="form-group" style="margin: 8px;">
+                    <label>No. WA</label>
+                    <input style="margin-top: 5px;" type="text" class="form-control" v-model="user.ig" required>
+                </div>
                 <div class="form-group">
                     <button class="btn btn-primary btn-block" style="margin: 8px;">Add User</button>
                 </div>
