@@ -111,7 +111,13 @@
                             console.log('Text copied to clipboard');
                             this.$toasted.show("Text copied to clipboard")
                             // Navigate to the Instagram direct message link
-                            window.location.href = 'https://www.instagram.com/direct/t/';
+                            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+                            // Instagram deep link for direct messages
+                            const directMessageLink = isMobile
+                            ? 'instagram://direct/inbox' // Deep link for mobile devices
+                            : 'https://www.instagram.com/direct/t/'; // Regular link for other devices
+
+                            window.location.href = directMessageLink;
                         })
                         .catch((error) => {
                             console.error('Error copying text to clipboard:', error);
