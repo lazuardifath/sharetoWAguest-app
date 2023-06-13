@@ -11,6 +11,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="table-responsive">
+                <input class="form-control form-control-sm my-3 p-1" v-model="search" type="text" placeholder="Cari Nama" aria-label=".form-control-sm example">
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -20,7 +21,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="user in Users" :key="user.key">
+                            <tr v-for="user in filteredUsers" :key="user.key">
                                 <td style="font-size: 12px;vertical-align: middle;">{{ user.name }} <span style="font-size: 8px;vertical-align: middle;"><b>{{ user.ig }}</b></span></td>
                                 <td style="font-size: 8px;vertical-align: middle;">{{ user.phone }}</td>
                                 <td>
@@ -45,7 +46,8 @@
     export default {
         data() {
             return {
-                Users: []
+                Users: [],
+                search: '',
             }
         },
         mounted() {
@@ -65,6 +67,13 @@
                     })
                 });
             })
+        },
+        computed: {
+                filteredUsers() {
+                return this.Users.filter((user) => {
+                    return user.name.toLowerCase().includes(this.search.toLowerCase());
+                });
+            }
         },
         methods: {
             deleteUser(id){
