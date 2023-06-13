@@ -16,7 +16,7 @@
                 </div>
                 <div class="mb-3 form-group">
                     <label class="mb-2">No. WA</label>
-                    <input type="text" id="phone-input" @paste.prevent="handlePaste" class="form-control" v-model="user.phone" required>
+                    <input type="number" class="form-control" v-model="user.phone" required>
                 </div>
                 <div class="mb-3 form-group">
                     <label class="mb-2">Username IG</label>
