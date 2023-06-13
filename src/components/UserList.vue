@@ -1,8 +1,12 @@
 <template>
 <div class="container-fluid">
     <div class="row justify-content-center mt-3 ml-2">
-        <div class="alert alert-primary" role="alert">
-            Gunakan tombol <button class="btn btn-success" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .45rem; --bs-btn-font-size: .5rem;"><font-awesome-icon icon="fa-solid fa-phone-alt" /></button> Untuk share ke tamu tujuan yang sudah ditambahkan.
+        <div class="alert alert-primary alert-dismissible fade show" style="font-size: 12px;" role="alert">
+            <ul>
+            <li>Gunakan tombol <button class="btn btn-success" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .45rem; --bs-btn-font-size: .5rem;"><font-awesome-icon icon="fa-solid fa-phone-alt" /></button> Untuk share ke tamu tujuan yang sudah ditambahkan.</li>
+            <li>Gunakan tombol <button class="btn btn-dark" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .45rem; --bs-btn-font-size: .5rem;"><font-awesome-icon icon="fa-brands fa-instagram" /></button> Untuk share ke instagram sesuai username yang sudah di-input kemudian<b> Paste</b>.</li>
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
     <div class="row justify-content-center mt-3 ml-2">
@@ -21,6 +25,9 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr v-if="filteredUsers.length === 0">
+                                <td colspan="3" class="text-center">Tidak ada Tamu. <router-link to="/"><b><u>Tambah Tamu <font-awesome-icon icon="fa-solid fa-arrow-right" /></u></b></router-link></td>
+                            </tr>
                             <tr v-for="user in filteredUsers" :key="user.key">
                                 <td style="font-size: 12px;vertical-align: middle;">{{ user.name }} <span style="font-size: 8px;vertical-align: middle;"><b>{{ user.ig }}</b></span></td>
                                 <td style="font-size: 8px;vertical-align: middle;">{{ user.phone }}</td>
