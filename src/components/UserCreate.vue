@@ -16,11 +16,11 @@
                 </div>
                 <div class="mb-3 form-group">
                     <label class="mb-2">No. WA</label>
-                    <input type="number" class="form-control" v-model="user.phone" required>
+                    <input type="number" class="form-control" v-model="user.phone">
                 </div>
                 <div class="mb-3 form-group">
                     <label class="mb-2">Username IG</label>
-                    <input type="text" class="form-control" v-model="user.ig" required>
+                    <input type="text" class="form-control" v-model="user.ig">
                 </div>
                 <div class="mb-3 form-group">
                     <button class="btn btn-primary btn-block">Tambah Tamu</button>
